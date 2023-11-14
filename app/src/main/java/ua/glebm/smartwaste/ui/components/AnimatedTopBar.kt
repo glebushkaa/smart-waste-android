@@ -32,7 +32,6 @@ import ua.glebm.smartwaste.ui.theme.GuideTheme
 fun AnimatedTopBar(
     modifier: Modifier = Modifier,
     visible: Boolean,
-    closeVisible: Boolean = false,
     closeClicked: () -> Unit = {},
 ) {
     AnimatedVisibility(
@@ -48,7 +47,6 @@ fun AnimatedTopBar(
         ),
     ) {
         GuideTopBar(
-            closeVisible = closeVisible,
             closeClicked = closeClicked,
         )
     }
@@ -59,7 +57,6 @@ fun AnimatedTopBar(
 private fun GuideTopBar(
     modifier: Modifier = Modifier,
     closeClicked: () -> Unit = {},
-    closeVisible: Boolean = false,
 ) {
     Row(
         modifier = modifier
@@ -91,15 +88,5 @@ private fun GuideTopBar(
             ),
             color = GuideTheme.palette.onBackground,
         )
-        AnimatedVisibility(
-            modifier = Modifier.padding(end = GuideTheme.offset.regular),
-            visible = closeVisible,
-        ) {
-            GuideIconButton(
-                iconResId = R.drawable.ic_close,
-                tint = GuideTheme.palette.onBackground,
-                onClick = closeClicked,
-            )
-        }
     }
 }

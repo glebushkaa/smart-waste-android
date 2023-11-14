@@ -8,13 +8,13 @@ sealed class SplashNavigationEffect {
 
     data object NavigateToLogin : SplashNavigationEffect()
 
-    data object NavigateToHome : SplashNavigationEffect()
+    data object NavigateToMap : SplashNavigationEffect()
 
     inline fun handle(
         navigateLogin: () -> Unit = {},
-        navigateHome: () -> Unit = {},
+        navigateMap: () -> Unit = {},
     ) = when (this) {
         is NavigateToLogin -> navigateLogin()
-        is NavigateToHome -> navigateHome()
+        is NavigateToMap -> navigateMap()
     }
 }

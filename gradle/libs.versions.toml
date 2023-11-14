@@ -31,7 +31,9 @@ lifecycle-runtime-compose = "2.6.2"
 
 google-services = "4.4.0"
 
-map-box = "10.16.2"
+secret-gradle-plugin = "2.0.1"
+maps-compose = "2.11.4"
+play-services-maps = "18.1.0"
 
 
 [libraries]
@@ -67,6 +69,9 @@ compose-material = { group = "androidx.compose.material3", name = "material3" }
 compose-constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "compose-constraint" }
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
+maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "maps-compose" }
+
+play-services-maps = { group = "com.google.android.gms", name = "play-services-maps", version.ref = "play-services-maps" }
 
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
 
@@ -76,3 +81,5 @@ android-lib = { id = "com.android.library", version.ref = "androidGradlePlugin" 
 hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+secrets-gradle = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secret-gradle-plugin" }
+

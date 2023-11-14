@@ -28,7 +28,7 @@ class SplashViewModel @Inject constructor(
     private fun checkUserExistence() = viewModelScope.launch(Dispatchers.IO) {
         delay(ONE_SECOND)
         getUserUseCase().onSuccess {
-            val effect = SplashNavigationEffect.NavigateToHome
+            val effect = SplashNavigationEffect.NavigateToMap
             navigationEffect.trySend(effect)
         }.onFailure {
             val effect = SplashNavigationEffect.NavigateToLogin
