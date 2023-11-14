@@ -1,0 +1,78 @@
+[versions]
+activityCompose = "1.8.0"
+androidGradlePlugin = "8.1.2"
+androidxAppCompat = "1.6.1"
+androidxDataStore = "1.0.0"
+hilt = "2.48"
+hilt-navigation-compose = "1.1.0"
+kotlin = "1.9.10"
+kotlinxCoroutines = "1.7.1"
+material = "1.10.0"
+timber = "5.0.1"
+room = "2.6.0"
+ksp = "1.9.10-1.0.13"
+
+retrofit = "2.9.0"
+retrofit-gson-converter = "2.9.0"
+okhttp3 = "4.12.0"
+okhttp3-logging-interceptor = "4.12.0"
+gson = "2.10.1"
+
+glide = "4.16.0"
+
+firebaseCrashlytics = "18.5.1"
+firebaseCrashlyticsGradle = "2.9.9"
+
+compose-bom = "2023.10.01"
+compose-navigation = "2.7.5"
+compose-constraint = "1.0.1"
+coil-compose = "2.4.0"
+lifecycle-runtime-compose = "2.6.2"
+
+google-services = "4.4.0"
+
+map-box = "10.16.2"
+
+
+[libraries]
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidxAppCompat" }
+androidx-data-store = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidxDataStore" }
+
+hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt" }
+hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { group = "androidx.hilt", name = "hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
+
+kotlinx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "kotlinxCoroutines" }
+material = { module = "com.google.android.material:material", version.ref = "material" }
+timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "timber" }
+room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }
+room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
+room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
+
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+
+retrofit = { group = "com.squareup.retrofit2", name = "retrofit", version.ref = "retrofit" }
+retrofit-gson-converter = { group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit-gson-converter" }
+okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp3" }
+okhttp3-logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp3-logging-interceptor" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref = "gson" }
+
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+compose-ui = { group = "androidx.compose.ui", name = "ui" }
+compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+compose-material = { group = "androidx.compose.material3", name = "material3" }
+compose-constraint-layout = { module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "compose-constraint" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+lifecycle-runtime-compose = { group = "androidx.lifecycle", name = "lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
+
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil-compose" }
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
+android-lib = { id = "com.android.library", version.ref = "androidGradlePlugin" }
+hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
