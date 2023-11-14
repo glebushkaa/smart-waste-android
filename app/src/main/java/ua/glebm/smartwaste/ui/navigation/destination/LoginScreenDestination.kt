@@ -6,10 +6,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import kotlinx.coroutines.flow.receiveAsFlow
 import ua.glebm.smartwaste.ui.navigation.route.LoginScreenRoute
 import ua.glebm.smartwaste.ui.screen.login.LoginScreen
 import ua.glebm.smartwaste.ui.screen.login.LoginViewModel
-import kotlinx.coroutines.flow.receiveAsFlow
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/27/2023

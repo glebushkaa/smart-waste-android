@@ -32,7 +32,6 @@ import ua.glebm.smartwaste.ui.navigation.GuideNavHost
 import ua.glebm.smartwaste.ui.navigation.components.AnimateBottomNavBar
 import ua.glebm.smartwaste.ui.navigation.route.LoginScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.SplashScreenRoute
-import ua.glebm.smartwaste.ui.navigation.route.StepsScreenRoute
 import ua.glebm.smartwaste.ui.theme.GuideBookTheme
 import ua.glebm.smartwaste.ui.theme.GuideTheme
 
@@ -139,7 +138,6 @@ private fun GuideAppContent(
             AnimatedTopBar(
                 modifier = Modifier,
                 visible = areBarsVisible,
-                closeVisible = currentRoute == StepsScreenRoute.routeWithArgs,
                 closeClicked = { controller.popBackStack() },
             )
         },

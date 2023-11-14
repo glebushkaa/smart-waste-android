@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.secrets.gradle)
     kotlin("kapt")
 }
 
@@ -65,6 +66,8 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.material)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.maps.compose)
+    implementation(libs.play.services.maps)
 
     implementation(libs.lifecycle.runtime.compose)
 
