@@ -1,14 +1,14 @@
 package ua.glebm.smartwaste.ui.screen.login
 
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.launch
 import ua.glebm.smartwaste.core.android.BaseViewModel
 import ua.glebm.smartwaste.core.android.stateReducerFlow
 import ua.glebm.smartwaste.domain.usecase.auth.LoginField
 import ua.glebm.smartwaste.domain.usecase.auth.SignInUseCase
 import ua.glebm.smartwaste.domain.usecase.auth.SignUpUseCase
-import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -59,7 +59,7 @@ class LoginViewModel @Inject constructor(
     private fun validateUsername(username: String): Boolean {
         val username = username.trim()
         return username.length >= MIN_USERNAME_LENGTH &&
-                !username.contains("[!\"#$%&'()*+,-/:;\\\\<=>?@\\[\\]^`{|}~]".toRegex())
+            !username.contains("[!\"#$%&'()*+,-/:;\\\\<=>?@\\[\\]^`{|}~]".toRegex())
     }
 
     private fun validatePassword(password: String): Boolean {

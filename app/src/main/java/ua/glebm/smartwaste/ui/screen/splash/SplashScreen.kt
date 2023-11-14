@@ -24,11 +24,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.common.FIVE_HUNDRED_MILLIS
-import ua.glebm.smartwaste.ui.theme.GuideBookTheme
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
@@ -45,7 +43,7 @@ fun SplashScreen() {
 
     Box(
         modifier = Modifier
-            .background(GuideTheme.palette.background)
+            .background(SWTheme.palette.background)
             .fillMaxSize(),
         contentAlignment = Alignment.Center,
     ) {
@@ -55,7 +53,7 @@ fun SplashScreen() {
             },
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(
-                space = GuideTheme.offset.medium,
+                space = SWTheme.offset.medium,
             ),
         ) {
             Image(
@@ -67,10 +65,10 @@ fun SplashScreen() {
             )
             Text(
                 text = stringResource(R.string.app_name),
-                style = GuideTheme.typography.headlineMedium.copy(
+                style = SWTheme.typography.headlineMedium.copy(
                     fontWeight = FontWeight.ExtraBold,
                 ),
-                color = GuideTheme.palette.onBackground,
+                color = SWTheme.palette.onBackground,
             )
         }
     }
@@ -83,7 +81,7 @@ fun SplashScreen() {
 @Preview
 @Composable
 private fun SplashScreenPreview() {
-    GuideBookTheme(darkTheme = true) {
+    SWTheme(darkTheme = true) {
         SplashScreen()
     }
 }

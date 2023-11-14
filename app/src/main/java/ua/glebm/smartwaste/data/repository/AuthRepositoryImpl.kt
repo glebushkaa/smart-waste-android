@@ -1,5 +1,7 @@
 package ua.glebm.smartwaste.data.repository
 
+import com.google.gson.Gson
+import retrofit2.HttpException
 import ua.glebm.smartwaste.data.mapper.toUser
 import ua.glebm.smartwaste.data.network.AuthApi
 import ua.glebm.smartwaste.data.network.dto.auth.AuthResponse
@@ -13,8 +15,6 @@ import ua.glebm.smartwaste.domain.usecase.auth.LoginField
 import ua.glebm.smartwaste.domain.usecase.auth.SignInUseCase
 import ua.glebm.smartwaste.domain.usecase.auth.SignUpUseCase
 import ua.glebm.smartwaste.model.User
-import com.google.gson.Gson
-import retrofit2.HttpException
 import javax.inject.Inject
 
 /**

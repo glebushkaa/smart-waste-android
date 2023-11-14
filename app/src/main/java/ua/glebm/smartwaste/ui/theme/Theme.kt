@@ -9,7 +9,7 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import ua.glebm.smartwaste.ui.theme.GuideTheme.typography
+import ua.glebm.smartwaste.ui.theme.SWTheme.typography
 
 val LocalTypography = staticCompositionLocalOf { GuideTypography() }
 val LocalPalette = staticCompositionLocalOf { Palette() }
@@ -17,7 +17,7 @@ val LocalOffset = staticCompositionLocalOf { Offset() }
 val LocalShapes = staticCompositionLocalOf { Shape() }
 
 @Composable
-fun GuideBookTheme(
+fun SWTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit,
 ) {
@@ -41,7 +41,7 @@ fun GuideBookTheme(
     )
 }
 
-object GuideTheme {
+object SWTheme {
     val typography: GuideTypography
         @Composable
         get() = LocalTypography.current

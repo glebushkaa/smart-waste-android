@@ -32,8 +32,7 @@ import ua.glebm.smartwaste.ui.navigation.GuideNavHost
 import ua.glebm.smartwaste.ui.navigation.components.AnimateBottomNavBar
 import ua.glebm.smartwaste.ui.navigation.route.LoginScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.SplashScreenRoute
-import ua.glebm.smartwaste.ui.theme.GuideBookTheme
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
@@ -71,10 +70,10 @@ class MainActivity : ComponentActivity() {
             derivedStateOf { checkAreBarsVisible(currentEntry?.destination?.route) }
         }
 
-        GuideBookTheme(darkModeEnabled ?: systemDarkModeEnabled) {
+        SWTheme(darkModeEnabled ?: systemDarkModeEnabled) {
             val view = LocalView.current
-            val backgroundColor = GuideTheme.palette.background
-            val surfaceColor = GuideTheme.palette.surface
+            val backgroundColor = SWTheme.palette.background
+            val surfaceColor = SWTheme.palette.surface
             GuideAppContent(
                 currentRoute = currentEntry?.destination?.route,
                 controller = controller,
@@ -133,7 +132,7 @@ private fun GuideAppContent(
     Scaffold(
         modifier = Modifier
             .fillMaxSize()
-            .background(GuideTheme.palette.background),
+            .background(SWTheme.palette.background),
         topBar = {
             AnimatedTopBar(
                 modifier = Modifier,
@@ -145,7 +144,7 @@ private fun GuideAppContent(
             GuideNavHost(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(GuideTheme.palette.background)
+                    .background(SWTheme.palette.background)
                     .padding(it),
                 controller = controller,
             )

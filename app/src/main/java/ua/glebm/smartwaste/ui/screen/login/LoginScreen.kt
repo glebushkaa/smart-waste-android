@@ -32,8 +32,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.android.extensions.applyIf
 import ua.glebm.smartwaste.ui.screen.login.components.LoginTextField
-import ua.glebm.smartwaste.ui.theme.GuideBookTheme
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/27/2023
@@ -47,7 +46,7 @@ private fun LoginScreenPreview() {
         loginButtonEnabled = true,
     )
 
-    GuideBookTheme(darkTheme = false) {
+    SWTheme(darkTheme = false) {
         LoginScreen(state = state)
     }
 }
@@ -66,16 +65,16 @@ fun LoginScreen(
 
     Column(
         modifier = Modifier
-            .background(GuideTheme.palette.background)
+            .background(SWTheme.palette.background)
             .fillMaxSize()
-            .padding(horizontal = GuideTheme.offset.large),
+            .padding(horizontal = SWTheme.offset.large),
     ) {
         Row(
             modifier = Modifier
-                .padding(top = GuideTheme.offset.medium)
+                .padding(top = SWTheme.offset.medium)
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.spacedBy(
-                space = GuideTheme.offset.tiny,
+                space = SWTheme.offset.tiny,
                 alignment = CenterHorizontally,
             ),
         ) {
@@ -88,17 +87,17 @@ fun LoginScreen(
             )
             Text(
                 text = stringResource(id = R.string.app_name),
-                style = GuideTheme.typography.titleMedium,
-                color = GuideTheme.palette.onSurface,
+                style = SWTheme.typography.titleMedium,
+                color = SWTheme.palette.onSurface,
             )
         }
         Text(
-            modifier = Modifier.padding(top = GuideTheme.offset.large),
+            modifier = Modifier.padding(top = SWTheme.offset.large),
             text = stringResource(titleTextResId),
-            style = GuideTheme.typography.headlineLarge,
-            color = GuideTheme.palette.onBackground,
+            style = SWTheme.typography.headlineLarge,
+            color = SWTheme.palette.onBackground,
         )
-        Spacer(modifier = Modifier.height(GuideTheme.offset.huge))
+        Spacer(modifier = Modifier.height(SWTheme.offset.huge))
         if (state.loginMode == LoginMode.SIGN_UP) {
             LoginTextField(
                 value = state.username,
@@ -113,7 +112,7 @@ fun LoginScreen(
         }
         LoginTextField(
             modifier = Modifier.applyIf(state.loginMode == LoginMode.SIGN_UP) {
-                padding(top = GuideTheme.offset.medium)
+                padding(top = SWTheme.offset.medium)
             },
             value = state.email,
             isError = state.emailTextFieldError?.isNotEmpty() == true,
@@ -126,7 +125,7 @@ fun LoginScreen(
             keyboardType = KeyboardType.Email,
         )
         LoginTextField(
-            modifier = Modifier.padding(top = GuideTheme.offset.medium),
+            modifier = Modifier.padding(top = SWTheme.offset.medium),
             value = state.password,
             placeholder = stringResource(R.string.password),
             isError = state.passwordTextFieldError?.isNotEmpty() == true,
@@ -146,12 +145,12 @@ fun LoginScreen(
                 ),
             enabled = state.loginButtonEnabled,
             colors = ButtonDefaults.buttonColors(
-                containerColor = GuideTheme.palette.primary,
-                disabledContainerColor = GuideTheme.palette.primary.copy(
+                containerColor = SWTheme.palette.primary,
+                disabledContainerColor = SWTheme.palette.primary.copy(
                     alpha = LOGIN_DISABLED_CONTAINER_COLOR_ALPHA,
                 ),
             ),
-            shape = GuideTheme.shape.small,
+            shape = SWTheme.shape.small,
             onClick = {
                 focusManager.clearFocus()
                 val event = LoginScreenEvent.LoginClicked
@@ -160,21 +159,21 @@ fun LoginScreen(
         ) {
             Text(
                 text = stringResource(titleTextResId),
-                style = GuideTheme.typography.headlineSmall.copy(
+                style = SWTheme.typography.headlineSmall.copy(
                     fontWeight = FontWeight.ExtraBold,
                 ),
-                color = GuideTheme.palette.onPrimary,
+                color = SWTheme.palette.onPrimary,
             )
         }
         ClickableText(
             modifier = Modifier
                 .align(CenterHorizontally)
                 .padding(
-                    top = GuideTheme.offset.medium,
-                    bottom = GuideTheme.offset.large,
+                    top = SWTheme.offset.medium,
+                    bottom = SWTheme.offset.large,
                 ),
             text = loginText,
-            style = GuideTheme.typography.bodyMedium.copy(
+            style = SWTheme.typography.bodyMedium.copy(
                 fontWeight = FontWeight.Bold,
             ),
         ) { offset ->
@@ -205,7 +204,7 @@ private fun buildLoginText(
     return buildAnnotatedString {
         withStyle(
             style = SpanStyle(
-                color = GuideTheme.palette.onBackground,
+                color = SWTheme.palette.onBackground,
             ),
         ) {
             append(startText)
@@ -213,7 +212,7 @@ private fun buildLoginText(
         pushStringAnnotation(tag = LOGIN_ANNOTATION_TAG, annotation = "")
         withStyle(
             style = SpanStyle(
-                color = GuideTheme.palette.primary.copy(
+                color = SWTheme.palette.primary.copy(
                     alpha = LOGIN_LINK_TEXT_COLOR_ALPHA,
                 ),
             ),

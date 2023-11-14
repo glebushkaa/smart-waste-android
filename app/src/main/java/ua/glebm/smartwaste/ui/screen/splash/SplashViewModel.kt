@@ -1,13 +1,13 @@
 package ua.glebm.smartwaste.ui.screen.splash
 
-import ua.glebm.smartwaste.core.android.BaseViewModel
-import ua.glebm.smartwaste.core.common.ONE_SECOND
-import ua.glebm.smartwaste.domain.usecase.auth.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import ua.glebm.smartwaste.core.android.BaseViewModel
+import ua.glebm.smartwaste.core.common.ONE_SECOND
+import ua.glebm.smartwaste.domain.usecase.auth.GetUserUseCase
 import javax.inject.Inject
 
 /**

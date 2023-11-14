@@ -16,9 +16,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import ua.glebm.smartwaste.R
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
@@ -34,7 +33,7 @@ fun GuideSearch(
         modifier = modifier
             .fillMaxWidth()
             .heightIn(
-                min = dimensionResource(R.dimen.search_min_height)
+                min = dimensionResource(R.dimen.search_min_height),
             ),
         value = value,
         onValueChange = {
@@ -49,28 +48,28 @@ fun GuideSearch(
             Icon(
                 painter = painterResource(id = R.drawable.ic_search),
                 contentDescription = null,
-                tint = GuideTheme.palette.onSurface,
+                tint = SWTheme.palette.onSurface,
             )
         },
         placeholder = {
             Text(
                 text = stringResource(R.string.search),
-                style = GuideTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = GuideTheme.palette.onSurface.copy(
+                style = SWTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                color = SWTheme.palette.onSurface.copy(
                     alpha = SEARCH_HINT_ALPHA,
                 ),
             )
         },
-        textStyle = GuideTheme.typography.bodyLargeBold,
+        textStyle = SWTheme.typography.bodyLargeBold,
         colors = TextFieldDefaults.colors(
-            cursorColor = GuideTheme.palette.onSurface,
-            focusedTextColor = GuideTheme.palette.onSurface,
-            unfocusedTextColor = GuideTheme.palette.onSurface,
-            focusedContainerColor = GuideTheme.palette.surface,
-            unfocusedContainerColor = GuideTheme.palette.surface,
-            focusedIndicatorColor = GuideTheme.palette.primary,
+            cursorColor = SWTheme.palette.onSurface,
+            focusedTextColor = SWTheme.palette.onSurface,
+            unfocusedTextColor = SWTheme.palette.onSurface,
+            focusedContainerColor = SWTheme.palette.surface,
+            unfocusedContainerColor = SWTheme.palette.surface,
+            focusedIndicatorColor = SWTheme.palette.primary,
         ),
-        shape = GuideTheme.shape.huge,
+        shape = SWTheme.shape.huge,
     )
 }
 

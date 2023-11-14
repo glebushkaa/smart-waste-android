@@ -20,9 +20,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
-import androidx.compose.ui.unit.dp
 import ua.glebm.smartwaste.R
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/27/2023
@@ -60,8 +59,8 @@ fun LoginTextField(
         supportingText = {
             Text(
                 text = supportingText,
-                style = GuideTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
-                color = GuideTheme.palette.error,
+                style = SWTheme.typography.bodyMedium.copy(fontWeight = FontWeight.Bold),
+                color = SWTheme.palette.error,
             )
         },
         isError = isError,
@@ -79,8 +78,8 @@ fun LoginTextField(
         placeholder = {
             Text(
                 text = placeholder,
-                style = GuideTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
-                color = GuideTheme.palette.onSurface.copy(
+                style = SWTheme.typography.titleMedium.copy(fontWeight = FontWeight.Bold),
+                color = SWTheme.palette.onSurface.copy(
                     alpha = PLACEHOLDER_TEXT_ALPHA,
                 ),
             )
@@ -97,23 +96,23 @@ fun LoginTextField(
                 Icon(
                     painter = painterResource(imageResId),
                     contentDescription = null,
-                    tint = GuideTheme.palette.onSurface,
+                    tint = SWTheme.palette.onSurface,
                 )
             }
         },
-        textStyle = GuideTheme.typography.bodyLargeBold,
+        textStyle = SWTheme.typography.bodyLargeBold,
         colors = TextFieldDefaults.colors(
-            cursorColor = GuideTheme.palette.onSurface,
-            focusedTextColor = GuideTheme.palette.onSurface,
-            unfocusedTextColor = GuideTheme.palette.onSurface,
-            errorTextColor = GuideTheme.palette.onSurface,
-            focusedContainerColor = GuideTheme.palette.surface,
-            unfocusedContainerColor = GuideTheme.palette.surface,
-            focusedIndicatorColor = GuideTheme.palette.primary,
-            errorIndicatorColor = GuideTheme.palette.error,
-            errorContainerColor = GuideTheme.palette.error.copy(alpha = ERROR_CONTAINER_COLOR_ALPHA),
+            cursorColor = SWTheme.palette.onSurface,
+            focusedTextColor = SWTheme.palette.onSurface,
+            unfocusedTextColor = SWTheme.palette.onSurface,
+            errorTextColor = SWTheme.palette.onSurface,
+            focusedContainerColor = SWTheme.palette.surface,
+            unfocusedContainerColor = SWTheme.palette.surface,
+            focusedIndicatorColor = SWTheme.palette.primary,
+            errorIndicatorColor = SWTheme.palette.error,
+            errorContainerColor = SWTheme.palette.error.copy(alpha = ERROR_CONTAINER_COLOR_ALPHA),
         ),
-        shape = GuideTheme.shape.huge,
+        shape = SWTheme.shape.huge,
     )
 }
 

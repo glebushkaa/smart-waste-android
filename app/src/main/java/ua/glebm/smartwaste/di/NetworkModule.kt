@@ -7,8 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ua.glebm.smartwaste.data.network.AuthApi
-import ua.glebm.smartwaste.data.network.FavoritesApi
-import ua.glebm.smartwaste.data.network.GuidesApi
+import ua.glebm.smartwaste.data.network.RecycleApi
 import ua.glebm.smartwaste.session.api.SessionStatusHandler
 import ua.glebm.smartwaste.session.impl.SessionStatusHandlerImpl
 import javax.inject.Singleton
@@ -21,21 +20,15 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
 
-    private const val GUIDE_BASE_URL = "https://guidebook-api.azurewebsites.net/"
+    private const val SMART_WASTE_BASE_URL = "https://smartwaste-api.azurewebsites.net/"
 
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(GUIDE_BASE_URL)
+            .baseUrl(SMART_WASTE_BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideGuidesApi(retrofit: Retrofit): GuidesApi {
-        return retrofit.create(GuidesApi::class.java)
     }
 
     @Provides
@@ -46,8 +39,8 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideFavoritesApi(retrofit: Retrofit): FavoritesApi {
-        return retrofit.create(FavoritesApi::class.java)
+    fun provideRecycleApi(retrofit: Retrofit): RecycleApi {
+        return retrofit.create(RecycleApi::class.java)
     }
 
     @Provides

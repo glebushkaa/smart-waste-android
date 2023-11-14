@@ -30,7 +30,7 @@ import ua.glebm.smartwaste.ui.navigation.route.BottomNavGuideRoute
 import ua.glebm.smartwaste.ui.navigation.route.CameraScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.MapScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.ProfileScreenRoute
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
@@ -83,9 +83,9 @@ private fun GuideBottomNavigation(
                 dimensionResource(R.dimen.bottom_nav_bar_height),
             )
             .fillMaxWidth()
-            .background(GuideTheme.palette.surface),
+            .background(SWTheme.palette.surface),
     ) {
-        Spacer(modifier = Modifier.width(GuideTheme.offset.tiny))
+        Spacer(modifier = Modifier.width(SWTheme.offset.tiny))
         bottomNavItems.forEach { route ->
             GuideBottomNavItem(
                 iconResId = route.iconResId,
@@ -101,7 +101,7 @@ private fun GuideBottomNavigation(
                 },
             )
         }
-        Spacer(modifier = Modifier.width(GuideTheme.offset.tiny))
+        Spacer(modifier = Modifier.width(SWTheme.offset.tiny))
     }
 
     LaunchedEffect(key1 = currentDestination) {

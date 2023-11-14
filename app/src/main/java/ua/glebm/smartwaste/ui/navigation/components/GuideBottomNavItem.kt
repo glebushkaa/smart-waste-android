@@ -14,7 +14,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.android.extensions.clickableWithoutRipple
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/30/2023
@@ -29,9 +29,9 @@ fun GuideBottomNavItem(
     onClick: () -> Unit = {},
 ) {
     val color = if (selected) {
-        GuideTheme.palette.primary
+        SWTheme.palette.primary
     } else {
-        GuideTheme.palette.onBackground.copy(alpha = UNSELECTED_NAV_ITEM_ALPHA)
+        SWTheme.palette.onBackground.copy(alpha = UNSELECTED_NAV_ITEM_ALPHA)
     }
     val animatedColor by animateColorAsState(targetValue = color, label = "")
 
@@ -54,7 +54,7 @@ fun GuideBottomNavItem(
         )
         Text(
             text = text,
-            style = GuideTheme.typography.bodySmall,
+            style = SWTheme.typography.bodySmall,
             color = animatedColor,
         )
     }

@@ -4,7 +4,7 @@ import ua.glebm.smartwaste.data.network.dto.auth.UserDto
 import ua.glebm.smartwaste.model.User
 
 /**
- * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/28/2023
+ * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 11/14/2023
  */
 
 fun UserDto.toUser(): User {

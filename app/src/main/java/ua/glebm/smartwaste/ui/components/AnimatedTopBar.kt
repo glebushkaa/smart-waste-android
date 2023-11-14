@@ -22,7 +22,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.common.FIVE_HUNDRED_MILLIS
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 11/1/2023.
@@ -64,12 +64,12 @@ private fun GuideTopBar(
                 dimensionResource(R.dimen.top_bar_height),
             )
             .fillMaxWidth()
-            .background(GuideTheme.palette.surface),
+            .background(SWTheme.palette.surface),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Image(
             modifier = Modifier
-                .padding(start = GuideTheme.offset.regular)
+                .padding(start = SWTheme.offset.regular)
                 .size(
                     dimensionResource(R.dimen.top_bar_image_size),
                 ),
@@ -79,14 +79,14 @@ private fun GuideTopBar(
         Text(
             modifier = Modifier
                 .padding(
-                    horizontal = GuideTheme.offset.medium,
+                    horizontal = SWTheme.offset.medium,
                 )
                 .weight(1f),
             text = stringResource(R.string.app_name),
-            style = GuideTheme.typography.titleLarge.copy(
+            style = SWTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.ExtraBold,
             ),
-            color = GuideTheme.palette.onBackground,
+            color = SWTheme.palette.onBackground,
         )
     }
 }

@@ -20,11 +20,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import ua.glebm.smartwaste.R
-import ua.glebm.smartwaste.ui.theme.GuideBookTheme
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/30/2023
@@ -33,7 +31,7 @@ import ua.glebm.smartwaste.ui.theme.GuideTheme
 @Preview
 @Composable
 fun ConfirmationDialogPreview() {
-    GuideBookTheme(darkTheme = false) {
+    SWTheme(darkTheme = false) {
         ConfirmationDialogContent(
             title = "Delete account",
             description = "Are you sure you want to delete your account? This action cannot be undone",
@@ -71,46 +69,46 @@ private fun ConfirmationDialogContent(
         modifier = Modifier
             .fillMaxWidth()
             .background(
-                color = GuideTheme.palette.surface,
-                shape = GuideTheme.shape.large,
+                color = SWTheme.palette.surface,
+                shape = SWTheme.shape.large,
             ),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
             modifier = Modifier.padding(
-                top = GuideTheme.offset.regular,
+                top = SWTheme.offset.regular,
             ),
             text = title,
-            style = GuideTheme.typography.titleLarge.copy(
+            style = SWTheme.typography.titleLarge.copy(
                 fontWeight = FontWeight.Medium,
             ),
-            color = GuideTheme.palette.onSurface,
+            color = SWTheme.palette.onSurface,
         )
         Text(
             modifier = Modifier.padding(
-                top = GuideTheme.offset.small,
-                start = GuideTheme.offset.huge,
-                end = GuideTheme.offset.huge,
+                top = SWTheme.offset.small,
+                start = SWTheme.offset.huge,
+                end = SWTheme.offset.huge,
             ),
             text = description,
-            style = GuideTheme.typography.bodyMedium,
-            color = GuideTheme.palette.onSurface.copy(
-                alpha = DESCRIPTION_TEXT_ALPHA
+            style = SWTheme.typography.bodyMedium,
+            color = SWTheme.palette.onSurface.copy(
+                alpha = DESCRIPTION_TEXT_ALPHA,
             ),
             textAlign = TextAlign.Center,
         )
         Divider(
             modifier = Modifier
-                .padding(top = GuideTheme.offset.regular)
+                .padding(top = SWTheme.offset.regular)
                 .fillMaxWidth(),
-            color = GuideTheme.palette.onSurface.copy(
-                alpha = DIVIDER_ALPHA
+            color = SWTheme.palette.onSurface.copy(
+                alpha = DIVIDER_ALPHA,
             ),
         )
         Row(
             modifier = Modifier
                 .height(
-                    dimensionResource(R.dimen.confirmation_button_row_height)
+                    dimensionResource(R.dimen.confirmation_button_row_height),
                 )
                 .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -123,20 +121,20 @@ private fun ConfirmationDialogContent(
             ) {
                 Text(
                     text = stringResource(R.string.cancel),
-                    style = GuideTheme.typography.bodyLargeBold.copy(
+                    style = SWTheme.typography.bodyLargeBold.copy(
                         fontWeight = FontWeight.Medium,
                     ),
-                    color = GuideTheme.palette.onSurface,
+                    color = SWTheme.palette.onSurface,
                 )
             }
             Divider(
                 modifier = Modifier
                     .fillMaxHeight()
                     .width(
-                        dimensionResource(R.dimen.vertical_confirmation_divider_width)
+                        dimensionResource(R.dimen.vertical_confirmation_divider_width),
                     ),
-                color = GuideTheme.palette.onSurface.copy(
-                    alpha = DIVIDER_ALPHA
+                color = SWTheme.palette.onSurface.copy(
+                    alpha = DIVIDER_ALPHA,
                 ),
             )
             TextButton(
@@ -147,10 +145,10 @@ private fun ConfirmationDialogContent(
             ) {
                 Text(
                     text = stringResource(R.string.confirm),
-                    style = GuideTheme.typography.bodyLargeBold.copy(
+                    style = SWTheme.typography.bodyLargeBold.copy(
                         fontWeight = FontWeight.Medium,
                     ),
-                    color = GuideTheme.palette.error,
+                    color = SWTheme.palette.error,
                 )
             }
         }

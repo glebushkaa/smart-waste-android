@@ -8,7 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import ua.glebm.smartwaste.R
-import ua.glebm.smartwaste.ui.theme.GuideTheme
+import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
@@ -19,7 +19,7 @@ fun GuideIconButton(
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
     @DrawableRes iconResId: Int = R.drawable.ic_arrow_next,
-    tint: Color = GuideTheme.palette.onBackground,
+    tint: Color = SWTheme.palette.onBackground,
     onClick: () -> Unit,
 ) {
     IconButton(
