@@ -20,13 +20,13 @@ object LoginScreenRoute : GuideRoute {
 object MapScreenRoute : BottomNavGuideRoute {
     override val route: String = "map"
     override val titleResId: Int = R.string.map
-    override val iconResId: Int = R.drawable.ic_home
+    override val iconResId: Int = R.drawable.ic_map
 }
 
 object CameraScreenRoute : BottomNavGuideRoute {
     override val route: String = "camera"
     override val titleResId: Int = R.string.camera
-    override val iconResId: Int = R.drawable.ic_settings
+    override val iconResId: Int = R.drawable.ic_camera
 }
 
 object ProfileScreenRoute : BottomNavGuideRoute {

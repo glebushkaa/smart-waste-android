@@ -75,7 +75,6 @@ class MainActivity : ComponentActivity() {
             val backgroundColor = SWTheme.palette.background
             val surfaceColor = SWTheme.palette.surface
             GuideAppContent(
-                currentRoute = currentEntry?.destination?.route,
                 controller = controller,
                 areBarsVisible = areBarsVisible,
             )
@@ -125,7 +124,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun GuideAppContent(
-    currentRoute: String?,
     controller: NavHostController,
     areBarsVisible: Boolean,
 ) {
