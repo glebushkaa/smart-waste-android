@@ -60,9 +60,7 @@ fun AnimateBottomNavBar(
             animationSpec = tween(FIVE_HUNDRED_MILLIS.toInt()),
         ),
     ) {
-        GuideBottomNavigation(
-            navController = controller,
-        )
+        GuideBottomNavigation(navController = controller)
     }
 }
 
@@ -79,9 +77,7 @@ private fun GuideBottomNavigation(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
         modifier = modifier
-            .height(
-                dimensionResource(R.dimen.bottom_nav_bar_height),
-            )
+            .height(dimensionResource(R.dimen.bottom_nav_bar_height))
             .fillMaxWidth()
             .background(SWTheme.palette.surface),
     ) {

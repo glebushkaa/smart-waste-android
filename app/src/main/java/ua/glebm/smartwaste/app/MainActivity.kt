@@ -1,8 +1,11 @@
 package ua.glebm.smartwaste.app
 
+import android.Manifest
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -18,13 +21,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
+import ua.glebm.smartwaste.core.android.extensions.checkPermission
 import ua.glebm.smartwaste.core.android.extensions.navigatePopUpInclusive
+import ua.glebm.smartwaste.core.android.extensions.toast
 import ua.glebm.smartwaste.session.api.SessionStatus
 import ua.glebm.smartwaste.ui.components.AnimatedTopBar
 import ua.glebm.smartwaste.ui.dialogs.SessionExpiredDialog
@@ -75,7 +81,6 @@ class MainActivity : ComponentActivity() {
             val backgroundColor = SWTheme.palette.background
             val surfaceColor = SWTheme.palette.surface
             GuideAppContent(
-                currentRoute = currentEntry?.destination?.route,
                 controller = controller,
                 areBarsVisible = areBarsVisible,
             )
@@ -125,7 +130,6 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 private fun GuideAppContent(
-    currentRoute: String?,
     controller: NavHostController,
     areBarsVisible: Boolean,
 ) {
