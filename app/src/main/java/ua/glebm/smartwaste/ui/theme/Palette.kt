@@ -26,14 +26,14 @@ val darkPalette = Palette(
     secondary = DarkGreen,
     tertiary = DarkRed,
     background = DarkGrey,
-    surface = SurfaceBlack,
-    error = Color.Red,
+    surface = NewSurfaceBlack,
+    error = ErrorRed,
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
     onBackground = Color.White,
-    onSurface = Color.White,
-    onError = Color.Red,
+    onSurface = NewOnSurfaceBlack,
+    onError = BackgroundWhite,
 )
 
 val lightPalette = Palette(
@@ -42,11 +42,11 @@ val lightPalette = Palette(
     tertiary = Color.Red,
     background = BackgroundWhite,
     surface = Color.White,
-    error = Color.Red,
+    error = ErrorRed,
     onPrimary = Color.White,
     onSecondary = Color.White,
     onTertiary = Color.White,
     onBackground = Color.Black,
-    onSurface = Color.Black,
-    onError = Color.Red,
+    onSurface = NewSurfaceBlack,
+    onError = BackgroundWhite,
 )

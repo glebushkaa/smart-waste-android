@@ -1,15 +1,17 @@
 package ua.glebm.smartwaste.ui.components
 
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
 import ua.glebm.smartwaste.ui.theme.SWTheme
 
 /**
@@ -18,37 +20,45 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
 
 @Preview
 @Composable
-fun SWButtonPreview() {
-    SWButton(
-        text = "Button",
-        onClick = {},
-    )
+fun SWOutlinedButtonPreview() {
+    SWTheme(darkTheme = true) {
+        SWOutlinedButton(
+            modifier = Modifier,
+            onClick = {},
+        )
+    }
 }
 
 @Composable
-fun SWButton(
+fun SWOutlinedButton(
     modifier: Modifier = Modifier,
-    buttonColors: ButtonColors = ButtonDefaults.buttonColors(
-        containerColor = SWTheme.palette.primary,
-        contentColor = SWTheme.palette.onPrimary,
+    border: BorderStroke = BorderStroke(
+        width = 2.dp,
+        color = SWTheme.palette.onSurface.copy(alpha = 0.5f),
+    ),
+    shape: RoundedCornerShape = SWTheme.shape.small,
+    enabled: Boolean = true,
+    contentPadding: PaddingValues = PaddingValues(
+        SWTheme.offset.default,
     ),
     text: String = "",
     textStyle: TextStyle = SWTheme.typography.bodyMedium,
     content: @Composable RowScope.() -> Unit = {
         Text(
             text = text,
-            color = SWTheme.palette.onPrimary,
+            color = SWTheme.palette.primary,
             style = textStyle,
         )
     },
-    shape: RoundedCornerShape = SWTheme.shape.medium,
     onClick: () -> Unit,
 ) {
-    Button(
+    OutlinedButton(
         modifier = modifier,
         onClick = onClick,
-        colors = buttonColors,
-        content = content,
+        border = border,
         shape = shape,
+        enabled = enabled,
+        content = content,
+        contentPadding = contentPadding,
     )
 }

@@ -5,9 +5,11 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import ua.glebm.smartwaste.core.android.extensions.navigatePopUpInclusive
+import ua.glebm.smartwaste.ui.navigation.destination.bucketScreenDestination
 import ua.glebm.smartwaste.ui.navigation.destination.cameraScreenDestination
 import ua.glebm.smartwaste.ui.navigation.destination.loginScreenDestination
 import ua.glebm.smartwaste.ui.navigation.destination.mapScreenDestination
+import ua.glebm.smartwaste.ui.navigation.destination.profileScreenDestination
 import ua.glebm.smartwaste.ui.navigation.destination.splashScreenDestination
 import ua.glebm.smartwaste.ui.navigation.route.LoginScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.MapScreenRoute
@@ -50,5 +52,7 @@ fun GuideNavHost(
 
         mapScreenDestination()
         cameraScreenDestination()
+        profileScreenDestination()
+        bucketScreenDestination()
     }
 }

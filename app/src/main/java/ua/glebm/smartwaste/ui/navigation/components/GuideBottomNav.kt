@@ -27,7 +27,7 @@ import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.android.extensions.navigatePopUpInclusive
 import ua.glebm.smartwaste.core.common.FIVE_HUNDRED_MILLIS
 import ua.glebm.smartwaste.ui.navigation.route.BottomNavGuideRoute
-import ua.glebm.smartwaste.ui.navigation.route.CameraScreenRoute
+import ua.glebm.smartwaste.ui.navigation.route.BucketScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.MapScreenRoute
 import ua.glebm.smartwaste.ui.navigation.route.ProfileScreenRoute
 import ua.glebm.smartwaste.ui.theme.SWTheme
@@ -38,8 +38,8 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
 
 private val bottomNavItems = listOf(
     MapScreenRoute,
-    CameraScreenRoute,
     ProfileScreenRoute,
+    BucketScreenRoute,
 )
 
 @Composable

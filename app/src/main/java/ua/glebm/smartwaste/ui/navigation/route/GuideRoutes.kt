@@ -23,10 +23,14 @@ object MapScreenRoute : BottomNavGuideRoute {
     override val iconResId: Int = R.drawable.ic_map
 }
 
-object CameraScreenRoute : BottomNavGuideRoute {
+object CameraScreenRoute : GuideRoute {
     override val route: String = "camera"
-    override val titleResId: Int = R.string.camera
-    override val iconResId: Int = R.drawable.ic_camera
+}
+
+object BucketScreenRoute : BottomNavGuideRoute {
+    override val route: String = "bucket"
+    override val titleResId: Int = R.string.bucket
+    override val iconResId: Int = R.drawable.ic_bucket
 }
 
 object ProfileScreenRoute : BottomNavGuideRoute {

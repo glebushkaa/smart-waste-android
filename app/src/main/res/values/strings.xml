@@ -3,6 +3,7 @@
 
     <string name="map">Map</string>
     <string name="camera">Camera</string>
+    <string name="bucket">Bucket</string>
     <string name="profile">Profile</string>
 
     <string name="home">Home</string>

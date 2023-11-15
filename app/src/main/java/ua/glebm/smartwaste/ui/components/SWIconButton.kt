@@ -15,7 +15,7 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
  */
 
 @Composable
-fun GuideIconButton(
+fun SWIconButton(
     modifier: Modifier = Modifier,
     iconModifier: Modifier = Modifier,
     @DrawableRes iconResId: Int = R.drawable.ic_arrow_next,

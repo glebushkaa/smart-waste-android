@@ -7,13 +7,13 @@
         android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:allowBackup="true"
         android:name=".app.GuideApp"
+        android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
@@ -25,7 +25,9 @@
         <activity
             android:name=".app.MainActivity"
             android:exported="true"
-            android:theme="@style/Theme.SmartWaste">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.SmartWaste"
+            android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

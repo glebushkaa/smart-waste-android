@@ -6,8 +6,11 @@ val DarkBlue = Color(0xFF3A5787)
 val DarkGreen = Color(0xFF35c759)
 val Green = Color(0xFF35c759)
 val DarkRed = Color(0xFF8B0000)
+val ErrorRed = Color(0xFFBB7070)
 
 val DarkGrey = Color(0xFF272727)
 
 val BackgroundWhite = Color(0xFFEBEBEB)
 val SurfaceBlack = Color(0xFF181818)
+val NewSurfaceBlack = Color(0xFF454444)
+val NewOnSurfaceBlack = Color(0xFFE7E7E7)
