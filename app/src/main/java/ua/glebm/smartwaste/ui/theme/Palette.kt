@@ -23,7 +23,7 @@ data class Palette(
 
 val darkPalette = Palette(
     primary = Green,
-    secondary = DarkGreen,
+    secondary = Yellow,
     tertiary = DarkRed,
     background = DarkGrey,
     surface = NewSurfaceBlack,
@@ -38,7 +38,7 @@ val darkPalette = Palette(
 
 val lightPalette = Palette(
     primary = Green,
-    secondary = Color.Green,
+    secondary = Yellow,
     tertiary = Color.Red,
     background = BackgroundWhite,
     surface = Color.White,

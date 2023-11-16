@@ -21,8 +21,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.rememberNestedScrollInteropConnection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -173,7 +171,6 @@ private fun AddItemBottomSheetContent(
         BucketItemsDropdown(
             modifier = Modifier
                 .heightIn(max = 300.dp)
-                .nestedScroll(rememberNestedScrollInteropConnection())
                 .layoutId(MATERIAL_DROPDOWN),
             selectedItemModifier = Modifier.layoutId(MATERIAL_DROPDOWN_SELECTED_ITEM),
             selectedItem = selectedItem,
