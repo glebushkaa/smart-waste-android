@@ -36,7 +36,9 @@ class AuthRepositoryImpl @Inject constructor(
                 throw httpException
             }
             val json = errorResponse.errorBody()?.string()
-            val signInResponse = Gson().fromJson(json, LoginErrorResponse::class.java)
+            val signInResponse = Gson().fromJson(json, LoginErrorResponse::class.java) ?: run {
+                throw httpException
+            }
             throw getSignInException(signInResponse.code, signInResponse.message)
         }
         return response.accessToken ?: run {
@@ -62,7 +64,9 @@ class AuthRepositoryImpl @Inject constructor(
                 throw httpException
             }
             val json = responseError.errorBody()?.string()
-            val signOut = Gson().fromJson(json, LoginErrorResponse::class.java)
+            val signOut = Gson().fromJson(json, LoginErrorResponse::class.java) ?: run {
+                throw httpException
+            }
             throw getSignUpException(
                 code = signOut.code,
                 message = signOut.message,

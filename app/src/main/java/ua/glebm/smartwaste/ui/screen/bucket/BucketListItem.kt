@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.model.BucketItem
@@ -22,20 +22,6 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 11/15/2023
  */
-
-@Preview
-@Composable
-fun BucketListItemPreview() {
-    SWTheme(darkTheme = true) {
-        BucketListItem(
-            item = BucketItem(
-                id = 0,
-                name = "Test",
-                count = 10,
-            ),
-        )
-    }
-}
 
 @Composable
 fun BucketListItem(
@@ -59,8 +45,10 @@ fun BucketListItem(
                 .align(CenterVertically)
                 .weight(1f),
             text = item.name,
-            style = SWTheme.typography.headlineSmall,
+            style = SWTheme.typography.bodyLargeBold,
             color = SWTheme.palette.onSurface,
+            maxLines = 1,
+            overflow = TextOverflow.Ellipsis,
         )
         SWOutlinedIconButton(
             modifier = Modifier

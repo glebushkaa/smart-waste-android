@@ -7,6 +7,13 @@ package ua.glebm.smartwaste.model
 data class BucketItem(
     val id: Long,
     val name: String,
-    val count: Int,
+    val count: Int = 0,
     val limit: Int = 10,
-)
+    val categories: List<Category> = emptyList(),
+) {
+    data class Category(
+        val id: Long,
+        val name: String,
+        val slug: String,
+    )
+}

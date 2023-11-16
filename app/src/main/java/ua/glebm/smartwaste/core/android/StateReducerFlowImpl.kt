@@ -3,19 +3,14 @@ package ua.glebm.smartwaste.core.android
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.FlowCollector
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.runningFold
 import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
 
-/**
- * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/26/2023
- */
-
 class StateReducerFlowImpl<State, Action> @Inject constructor(
-    initialState: State,
+    private val initialState: State,
     reduceState: suspend (State, Action) -> State,
     scope: CoroutineScope,
 ) : StateReducerFlow<State, Action> {
@@ -29,7 +24,8 @@ class StateReducerFlowImpl<State, Action> @Inject constructor(
 
     override val replayCache get() = stateFlow.replayCache
 
-    override val value get() = stateFlow.value
+    override val value
+        get() = stateFlow.value
 
     override suspend fun collect(collector: FlowCollector<State>): Nothing {
         stateFlow.collect(collector)

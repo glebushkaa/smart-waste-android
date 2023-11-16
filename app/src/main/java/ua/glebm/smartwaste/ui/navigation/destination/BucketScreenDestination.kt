@@ -5,6 +5,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import kotlinx.coroutines.flow.receiveAsFlow
 import ua.glebm.smartwaste.ui.navigation.route.BucketScreenRoute
 import ua.glebm.smartwaste.ui.screen.bucket.BucketScreen
 import ua.glebm.smartwaste.ui.screen.bucket.BucketViewModel
@@ -17,9 +18,13 @@ fun NavGraphBuilder.bucketScreenDestination() {
     composable(route = BucketScreenRoute.route) {
         val viewModel = hiltViewModel<BucketViewModel>()
         val state by viewModel.state.collectAsStateWithLifecycle()
+        val sideEffect by viewModel.sideEffect
+            .receiveAsFlow()
+            .collectAsStateWithLifecycle(initialValue = null)
 
         BucketScreen(
             state = state,
+            sideEffect = sideEffect,
             sendEvent = viewModel.state::handleEvent,
         )
     }

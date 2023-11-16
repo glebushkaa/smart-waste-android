@@ -6,7 +6,7 @@ val DarkBlue = Color(0xFF3A5787)
 val DarkGreen = Color(0xFF35c759)
 val Green = Color(0xFF35c759)
 val DarkRed = Color(0xFF8B0000)
-val ErrorRed = Color(0xFFBB7070)
+val ErrorRed = Color(0xFFC55858)
 
 val DarkGrey = Color(0xFF272727)
 

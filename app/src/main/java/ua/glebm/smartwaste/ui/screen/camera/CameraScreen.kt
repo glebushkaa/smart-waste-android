@@ -130,9 +130,8 @@ private fun CameraScreenContent(
                 .height(48.dp)
                 .fillMaxWidth(),
             text = "Take a picture",
-        ) {
-            launchCamera()
-        }
+            onClick = launchCamera,
+        )
     }
 }
 

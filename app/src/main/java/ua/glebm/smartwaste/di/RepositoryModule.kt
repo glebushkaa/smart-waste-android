@@ -5,8 +5,10 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ua.glebm.smartwaste.data.repository.AuthRepositoryImpl
+import ua.glebm.smartwaste.data.repository.BucketRepositoryImpl
 import ua.glebm.smartwaste.data.repository.RecycleRepositoryImpl
 import ua.glebm.smartwaste.domain.repository.AuthRepository
+import ua.glebm.smartwaste.domain.repository.BucketRepository
 import ua.glebm.smartwaste.domain.repository.RecycleRepository
 import javax.inject.Singleton
 
@@ -29,4 +31,10 @@ interface RepositoryModule {
     fun bindRecycleRepository(
         recycleRepositoryImpl: RecycleRepositoryImpl,
     ): RecycleRepository
+
+    @Binds
+    @Singleton
+    fun bindBucketRepository(
+        impl: BucketRepositoryImpl,
+    ): BucketRepository
 }

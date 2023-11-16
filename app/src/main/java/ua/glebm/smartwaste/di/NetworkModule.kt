@@ -7,6 +7,7 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ua.glebm.smartwaste.data.network.AuthApi
+import ua.glebm.smartwaste.data.network.BucketApi
 import ua.glebm.smartwaste.data.network.RecycleApi
 import ua.glebm.smartwaste.session.api.SessionStatusHandler
 import ua.glebm.smartwaste.session.impl.SessionStatusHandlerImpl
@@ -35,6 +36,12 @@ object NetworkModule {
     @Singleton
     fun provideAuthApi(retrofit: Retrofit): AuthApi {
         return retrofit.create(AuthApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideBucketApi(retrofit: Retrofit): BucketApi {
+        return retrofit.create(BucketApi::class.java)
     }
 
     @Provides

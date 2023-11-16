@@ -3,7 +3,6 @@ package ua.glebm.smartwaste.ui.components
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
@@ -41,8 +40,8 @@ fun SWOutlinedIconButton(
     @DrawableRes iconResId: Int = R.drawable.ic_arrow_next,
     iconTint: Color = SWTheme.palette.onSurface,
     border: BorderStroke = BorderStroke(
-        width = 2.dp,
-        color = SWTheme.palette.onSurface.copy(alpha = 0.5f),
+        width = 1.dp,
+        color = SWTheme.palette.onBackground.copy(alpha = 0.5f),
     ),
     contentPadding: PaddingValues = PaddingValues(
         SWTheme.offset.default,

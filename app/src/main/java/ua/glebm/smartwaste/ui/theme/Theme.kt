@@ -4,6 +4,7 @@ import android.app.Activity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.toArgb
@@ -15,6 +16,7 @@ val LocalTypography = staticCompositionLocalOf { GuideTypography() }
 val LocalPalette = staticCompositionLocalOf { Palette() }
 val LocalOffset = staticCompositionLocalOf { Offset() }
 val LocalShapes = staticCompositionLocalOf { Shape() }
+val LocalElevation = staticCompositionLocalOf { Elevation() }
 
 @Composable
 fun SWTheme(
@@ -57,4 +59,9 @@ object SWTheme {
     val shape: Shape
         @Composable
         get() = LocalShapes.current
+
+    val elevation: Elevation
+        @Composable
+        @ReadOnlyComposable
+        get() = LocalElevation.current
 }

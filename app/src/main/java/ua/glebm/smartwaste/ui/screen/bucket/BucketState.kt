@@ -8,4 +8,9 @@ import ua.glebm.smartwaste.model.BucketItem
 
 data class BucketState(
     val items: List<BucketItem> = emptyList(),
+    val allAvailableItems: List<BucketItem> = emptyList(),
+    val bottomSheetBucketItem: BucketItem? = null,
+    val newBucketItemCount: Int = 0,
+    val addItemBottomSheetShown: Boolean = false,
+    val loaderVisible: Boolean = false,
 )

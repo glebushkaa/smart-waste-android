@@ -20,7 +20,6 @@ fun NavGraphBuilder.mapScreenDestination() {
 
         MapScreen(
             state = state,
-            sendEvent = viewModel.state::handleEvent,
         )
     }
 }
