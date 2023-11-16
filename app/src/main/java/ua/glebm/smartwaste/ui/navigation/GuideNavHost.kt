@@ -53,6 +53,9 @@ fun GuideNavHost(
         mapScreenDestination()
         cameraScreenDestination()
         profileScreenDestination()
-        bucketScreenDestination()
+        bucketScreenDestination {
+            val route = MapScreenRoute.makeRouteMapEnabledRoute(enabled = true)
+            controller.navigate(route = route)
+        }
     }
 }

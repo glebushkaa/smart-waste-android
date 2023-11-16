@@ -9,4 +9,8 @@ import ua.glebm.smartwaste.model.RecyclePoint
 interface RecycleRepository {
 
     suspend fun getRecyclePoints(): List<RecyclePoint>
+
+    suspend fun getRecyclePointsByCategories(
+        categories: List<String>,
+    ): List<RecyclePoint>
 }

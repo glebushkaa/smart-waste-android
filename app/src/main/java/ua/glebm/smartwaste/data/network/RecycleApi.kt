@@ -2,6 +2,7 @@ package ua.glebm.smartwaste.data.network
 
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Query
 import ua.glebm.smartwaste.data.network.dto.recycle.RecyclePointDto
 
 /**
@@ -13,5 +14,6 @@ interface RecycleApi {
     @GET("points")
     suspend fun getRecyclePoints(
         @Header("Authorization") accessToken: String,
+        @Query("categories") categories: List<String> = emptyList(),
     ): List<RecyclePointDto>
 }

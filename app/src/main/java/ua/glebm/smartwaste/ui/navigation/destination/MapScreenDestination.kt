@@ -1,5 +1,6 @@
 package ua.glebm.smartwaste.ui.navigation.destination
 
+import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -15,11 +16,22 @@ import ua.glebm.smartwaste.ui.screen.map.MapViewModel
 
 fun NavGraphBuilder.mapScreenDestination() {
     composable(route = MapScreenRoute.route) {
-        val viewModel = hiltViewModel<MapViewModel>()
-        val state by viewModel.state.collectAsStateWithLifecycle()
-
-        MapScreen(
-            state = state,
-        )
+        MapDestinationContent()
     }
+
+    composable(
+        route = MapScreenRoute.routeWithEnabledArg,
+        arguments = MapScreenRoute.enabledArguments,
+        content = {
+            MapDestinationContent()
+        },
+    )
+}
+
+@Composable
+private fun MapDestinationContent() {
+    val viewModel = hiltViewModel<MapViewModel>()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+
+    MapScreen(state = state)
 }

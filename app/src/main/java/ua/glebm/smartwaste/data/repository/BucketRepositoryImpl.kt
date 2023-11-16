@@ -35,6 +35,15 @@ class BucketRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : BucketRepository {
 
+    override suspend fun clearBucket() {
+    }
+
+    override suspend fun getCurrentBucketCategorySlugs(): List<String> {
+        return bucketDao.getBucketWithCategories().flatMap {
+            it.categories.map { category -> category.slug }
+        }
+    }
+
     override suspend fun getAllBucketItems(): List<BucketItem> {
         val token = getAccessToken()
         return bucketApi.getItems(token).buckets.map {
@@ -88,7 +97,7 @@ class BucketRepositoryImpl @Inject constructor(
     }
 
     override fun getBucketFlow(): Flow<List<BucketItem>> {
-        return bucketDao.getBucketWithCategories().map {
+        return bucketDao.getBucketWithCategoriesFlow().map {
             it.map(BucketWithCategories::toBucketItem)
         }
     }

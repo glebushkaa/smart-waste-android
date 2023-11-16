@@ -20,4 +20,8 @@ interface BucketRepository {
     suspend fun getAllBucketItems(): List<BucketItem>
 
     fun getBucketFlow(): Flow<List<BucketItem>>
+
+    suspend fun clearBucket()
+
+    suspend fun getCurrentBucketCategorySlugs(): List<String>
 }

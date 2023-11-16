@@ -24,6 +24,14 @@ class RecycleRepositoryImpl @Inject constructor(
         ).map { it.toRecyclePoint() }
     }
 
+    override suspend fun getRecyclePointsByCategories(categories: List<String>): List<RecyclePoint> {
+        val accessToken = getAccessToken()
+        return recycleApi.getRecyclePoints(
+            accessToken = accessToken,
+            categories = categories,
+        ).map { it.toRecyclePoint() }
+    }
+
     private suspend fun getAccessToken(): String {
         return authDataStore.getAccessToken() ?: run {
             val exception = AuthException(

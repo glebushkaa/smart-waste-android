@@ -1,5 +1,7 @@
 package ua.glebm.smartwaste.ui.navigation.route
 
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import ua.glebm.smartwaste.R
 
 /**
@@ -21,6 +23,16 @@ object MapScreenRoute : BottomNavGuideRoute {
     override val route: String = "map"
     override val titleResId: Int = R.string.map
     override val iconResId: Int = R.drawable.ic_map
+    const val categoryEnabledArg = "categoryEnabledArg"
+
+    val routeWithEnabledArg = "$route/{$categoryEnabledArg}"
+    val enabledArguments = listOf(
+        navArgument(categoryEnabledArg) { type = NavType.BoolType },
+    )
+
+    fun makeRouteMapEnabledRoute(enabled: Boolean): String {
+        return "$route/$enabled"
+    }
 }
 
 object CameraScreenRoute : GuideRoute {

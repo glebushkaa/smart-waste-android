@@ -9,7 +9,7 @@ import timber.log.Timber
  */
 
 @HiltAndroidApp
-class GuideApp : Application() {
+class SWApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

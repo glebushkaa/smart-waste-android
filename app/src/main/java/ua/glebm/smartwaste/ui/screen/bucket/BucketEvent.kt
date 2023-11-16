@@ -45,4 +45,6 @@ sealed class BucketEvent {
     data object ShowLoader : BucketEvent()
 
     data object HideLoader : BucketEvent()
+
+    data object OpenMapClicked : BucketEvent()
 }

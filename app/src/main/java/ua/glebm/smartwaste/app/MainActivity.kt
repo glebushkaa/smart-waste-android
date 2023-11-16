@@ -4,15 +4,8 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -23,20 +16,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.rotate
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalView
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.window.Dialog
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import dagger.hilt.android.AndroidEntryPoint
-import ua.glebm.smartwaste.R
 import ua.glebm.smartwaste.core.android.extensions.navigatePopUpInclusive
 import ua.glebm.smartwaste.session.api.SessionStatus
 import ua.glebm.smartwaste.ui.components.AnimatedTopBar
@@ -59,12 +46,12 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            GuideApp()
+            SWApp()
         }
     }
 
     @Composable
-    private fun GuideApp() {
+    private fun SWApp() {
         val systemDarkModeEnabled = isSystemInDarkTheme()
         val controller = rememberNavController()
 
@@ -87,7 +74,7 @@ class MainActivity : ComponentActivity() {
             val view = LocalView.current
             val backgroundColor = SWTheme.palette.background
             val surfaceColor = SWTheme.palette.surface
-            GuideAppContent(
+            SWAppContent(
                 controller = controller,
                 areBarsVisible = areBarsVisible,
             )
@@ -136,7 +123,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-private fun GuideAppContent(
+private fun SWAppContent(
     controller: NavHostController,
     areBarsVisible: Boolean,
 ) {

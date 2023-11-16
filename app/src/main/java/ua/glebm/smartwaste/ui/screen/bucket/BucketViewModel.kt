@@ -36,6 +36,7 @@ class BucketViewModel @Inject constructor(
         reduceState = ::handle,
     )
     val sideEffect = Channel<BucketSideEffect>()
+    val navigationEffect = Channel<BucketNavigationEffect>()
 
     init {
         getAllBucketItems()
@@ -94,6 +95,17 @@ class BucketViewModel @Inject constructor(
         }
         val event = BucketEvent.SendBucketItem(item)
         state.handleEvent(event)
+    }
+
+    private fun tryOpenMap() = viewModelScope.launch(Dispatchers.IO) {
+        val items = state.value.items
+        if (items.isEmpty()) {
+            val effect = BucketSideEffect.ShowToast("Bucket is empty")
+            sideEffect.send(effect)
+            return@launch
+        }
+        val event = BucketNavigationEffect.NavigateMap
+        navigationEffect.send(event)
     }
 
     private fun handle(currentState: BucketState, event: BucketEvent): BucketState {
@@ -162,6 +174,8 @@ class BucketViewModel @Inject constructor(
             BucketEvent.ShowLoader -> {
                 return currentState.copy(loaderVisible = true)
             }
+
+            BucketEvent.OpenMapClicked -> tryOpenMap()
         }
         return currentState
     }

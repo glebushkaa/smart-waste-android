@@ -86,7 +86,8 @@ private fun GuideBottomNavigation(
             GuideBottomNavItem(
                 iconResId = route.iconResId,
                 text = stringResource(route.titleResId),
-                selected = selectedItem?.route == route.route,
+                selected = selectedItem?.route == route.route ||
+                    selectedItem?.route == MapScreenRoute.routeWithEnabledArg,
                 onClick = {
                     if (route.route == currentDestination?.route) return@GuideBottomNavItem
                     val currentRoute = currentDestination?.route ?: return@GuideBottomNavItem

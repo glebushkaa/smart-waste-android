@@ -62,5 +62,9 @@ interface BucketDao {
 
     @Transaction
     @Query("SELECT * FROM bucket WHERE count > 0 ORDER BY name ASC")
-    fun getBucketWithCategories(): Flow<List<BucketWithCategories>>
+    fun getBucketWithCategoriesFlow(): Flow<List<BucketWithCategories>>
+
+    @Transaction
+    @Query("SELECT * FROM bucket WHERE count > 0 ORDER BY name ASC")
+    fun getBucketWithCategories(): List<BucketWithCategories>
 }

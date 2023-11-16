@@ -228,7 +228,9 @@ private fun BucketScreenContent(
                 .fillMaxWidth(),
             text = "Find the nearest recycle point",
             textStyle = SWTheme.typography.bodyLarge,
+            enabled = state.items.isNotEmpty(),
         ) {
+            sendEvent(BucketEvent.OpenMapClicked)
         }
     }
 }

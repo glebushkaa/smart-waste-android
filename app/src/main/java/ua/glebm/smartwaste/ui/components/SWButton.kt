@@ -31,6 +31,9 @@ fun SWButton(
     buttonColors: ButtonColors = ButtonDefaults.buttonColors(
         containerColor = SWTheme.palette.primary,
         contentColor = SWTheme.palette.onPrimary,
+        disabledContainerColor = SWTheme.palette.primary.copy(
+            alpha = 0.2f,
+        ),
     ),
     text: String = "",
     textStyle: TextStyle = SWTheme.typography.bodyMedium,
@@ -42,6 +45,7 @@ fun SWButton(
         )
     },
     shape: RoundedCornerShape = SWTheme.shape.medium,
+    enabled: Boolean = true,
     onClick: () -> Unit,
 ) {
     Button(
@@ -50,5 +54,6 @@ fun SWButton(
         colors = buttonColors,
         content = content,
         shape = shape,
+        enabled = enabled,
     )
 }
