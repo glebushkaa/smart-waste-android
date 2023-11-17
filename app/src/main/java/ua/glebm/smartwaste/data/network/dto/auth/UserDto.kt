@@ -12,4 +12,7 @@ data class UserDto(
     @SerializedName("username") val username: String? = null,
     @SerializedName("code") val code: String? = null,
     @SerializedName("message") val message: String? = null,
+    @SerializedName("score") val score: Int? = null,
+    @SerializedName("createdAt") val createdAt: String? = null,
+    @SerializedName("buckets") val buckets: Int? = null,
 )

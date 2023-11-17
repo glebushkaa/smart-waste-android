@@ -55,6 +55,7 @@ fun MapScreen(
     if (state.chosenPoint != null) {
         MapBottomSheet(
             recyclerClusterItem = state.chosenPoint,
+            pointCategoriesValid = state.pointCategoriesValid,
             dismissRequest = {
                 sendEvent(MapScreenEvent.ClearPoint)
             },

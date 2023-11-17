@@ -17,6 +17,10 @@ import ua.glebm.smartwaste.domain.usecase.auth.SignInUseCase
 import ua.glebm.smartwaste.domain.usecase.auth.SignUpUseCase
 import ua.glebm.smartwaste.model.Quest
 import ua.glebm.smartwaste.model.User
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -102,7 +106,21 @@ class AuthRepositoryImpl @Inject constructor(
             )
             throw exception
         }
-        return response.toUser()
+        val days = response.createdAt?.let {
+            calculateDaysSinceCreation(it)
+        } ?: 0
+        return response.toUser(
+            days = days,
+        )
+    }
+
+    private fun calculateDaysSinceCreation(createdAt: String): Int {
+        val sdf = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
+        val createdDate = sdf.parse(createdAt)
+        val currentDate = Date()
+
+        val diffInMillies = currentDate.time - createdDate.time
+        return TimeUnit.DAYS.convert(diffInMillies, TimeUnit.MILLISECONDS).toInt()
     }
 
     override suspend fun deleteAccount() {

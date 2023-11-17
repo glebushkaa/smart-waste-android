@@ -57,6 +57,7 @@ fun MapBottomSheet(
     modifier: Modifier = Modifier,
     dismissRequest: () -> Unit = {},
     recyclerClusterItem: RecyclerClusterItem,
+    pointCategoriesValid: Boolean,
     cleanBucketClicked: () -> Unit = {},
 ) {
     val context = LocalContext.current
@@ -111,6 +112,7 @@ fun MapBottomSheet(
         MapBottomSheetContent(
             title = recyclerClusterItem.recyclePoint.name,
             address = recyclerClusterItem.recyclePoint.address,
+            pointCategoriesValid = pointCategoriesValid,
             categories = recyclerClusterItem.recyclePoint.categories.joinToString(separator = " ") {
                 it.icon
             },
@@ -142,6 +144,7 @@ fun MapBottomSheet(
 private fun MapBottomSheetContent(
     modifier: Modifier = Modifier,
     title: String,
+    pointCategoriesValid: Boolean = false,
     address: String,
     categories: String,
     cleanBucketClicked: () -> Unit = {},
@@ -258,7 +261,7 @@ private fun MapBottomSheetContent(
                 )
                 .height(50.dp)
                 .fillMaxWidth(),
-            enabled = permissionGranted && near,
+            enabled = permissionGranted && near && pointCategoriesValid,
             text = "Clear bucket",
             textStyle = SWTheme.typography.titleMedium,
         ) {

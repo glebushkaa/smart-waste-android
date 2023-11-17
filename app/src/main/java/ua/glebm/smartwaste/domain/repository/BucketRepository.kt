@@ -26,4 +26,6 @@ interface BucketRepository {
     suspend fun clearBucket()
 
     suspend fun getCurrentBucketCategorySlugs(): List<String>
+
+    suspend fun getBucketCategoryIds(): List<Long>
 }

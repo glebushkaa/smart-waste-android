@@ -21,4 +21,9 @@ sealed class MapScreenEvent {
     data class CleanBucket(
         val point: RecyclerClusterItem,
     ) : MapScreenEvent()
+
+    data class UpdatePoint(
+        val point: RecyclerClusterItem,
+        val pointCategoriesValid: Boolean,
+    ) : MapScreenEvent()
 }

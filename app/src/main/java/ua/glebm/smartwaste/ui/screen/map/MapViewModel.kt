@@ -2,10 +2,12 @@ package ua.glebm.smartwaste.ui.screen.map
 
 import androidx.lifecycle.SavedStateHandle
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ua.glebm.smartwaste.core.android.BaseViewModel
 import ua.glebm.smartwaste.core.android.stateReducerFlow
 import ua.glebm.smartwaste.domain.usecase.bucket.ClearBucketUseCase
+import ua.glebm.smartwaste.domain.usecase.bucket.GetBucketCategoriesIdsUseCase
 import ua.glebm.smartwaste.domain.usecase.recycle.GetRecyclePointUseCase
 import ua.glebm.smartwaste.domain.usecase.recycle.GetRecyclePointsByCategoriesUseCase
 import ua.glebm.smartwaste.ui.navigation.route.MapScreenRoute
@@ -21,6 +23,7 @@ class MapViewModel @Inject constructor(
     private val getRecyclePointUseCase: GetRecyclePointUseCase,
     private val getRecyclePointsByCategoriesUseCase: GetRecyclePointsByCategoriesUseCase,
     private val clearBucketUseCase: ClearBucketUseCase,
+    private val getBucketCategoriesIdsUseCase: GetBucketCategoriesIdsUseCase,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
@@ -30,9 +33,16 @@ class MapViewModel @Inject constructor(
     )
 
     private val enabled = savedStateHandle[MapScreenRoute.categoryEnabledArg] ?: false
+    private val categoryIds = mutableListOf<Long>()
 
     init {
+        getBucketCategoryIds()
         getRecyclePoints()
+    }
+
+    private fun getBucketCategoryIds() = viewModelScope.launch(Dispatchers.IO) {
+        val list = getBucketCategoriesIdsUseCase().getOrDefault(emptyList())
+        categoryIds.addAll(list)
     }
 
     private fun getRecyclePoints() = viewModelScope.launch {
@@ -50,6 +60,18 @@ class MapViewModel @Inject constructor(
         clearBucketUseCase()
     }
 
+    private fun validatePointCategories(
+        point: RecyclerClusterItem,
+    ) = viewModelScope.launch(Dispatchers.IO) {
+        val pointCategoryIds = point.recyclePoint.categories.map { it.id }
+        val pointCategoriesValid = pointCategoryIds.containsAll(categoryIds)
+        val event = MapScreenEvent.UpdatePoint(
+            point = point,
+            pointCategoriesValid = pointCategoriesValid,
+        )
+        state.handleEvent(event)
+    }
+
     private fun handleEvent(
         currentState: MapScreenState,
         event: MapScreenEvent,
@@ -60,7 +82,7 @@ class MapViewModel @Inject constructor(
             }
 
             is MapScreenEvent.ChoosePoint -> {
-                return currentState.copy(chosenPoint = event.point)
+                validatePointCategories(event.point)
             }
 
             MapScreenEvent.ClearPoint -> {
@@ -69,6 +91,13 @@ class MapViewModel @Inject constructor(
 
             is MapScreenEvent.CleanBucket -> {
                 clearBucket()
+            }
+
+            is MapScreenEvent.UpdatePoint -> {
+                return currentState.copy(
+                    chosenPoint = event.point,
+                    pointCategoriesValid = event.pointCategoriesValid,
+                )
             }
         }
         return currentState

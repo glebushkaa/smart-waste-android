@@ -11,4 +11,5 @@ import ua.glebm.smartwaste.ui.screen.map.model.RecyclerClusterItem
 data class MapScreenState(
     val recyclePoints: List<RecyclerClusterItem> = emptyList(),
     val chosenPoint: RecyclerClusterItem? = null,
+    val pointCategoriesValid: Boolean = false,
 )

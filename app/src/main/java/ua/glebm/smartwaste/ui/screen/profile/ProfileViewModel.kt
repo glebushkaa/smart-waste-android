@@ -40,15 +40,17 @@ class ProfileViewModel @Inject constructor(
     private fun handleEvent(currentState: ProfileState, event: ProfileEvent): ProfileState {
         when (event) {
             is ProfileEvent.UserInfoLoaded -> {
+                val level = event.user.score / 500
+                val completedLevelProgress = event.user.score % 500
                 return currentState.copy(
                     username = event.user.username,
                     email = event.user.email,
                     quests = event.quests,
                     requiredLevelProgress = 500,
-                    completedLevelProgress = 300,
-                    level = 17,
-                    doneBuckets = 3,
-                    days = 5,
+                    completedLevelProgress = completedLevelProgress,
+                    level = level,
+                    doneBuckets = event.user.buckets,
+                    days = event.user.days,
                 )
             }
         }

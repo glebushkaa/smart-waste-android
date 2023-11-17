@@ -36,6 +36,12 @@ class BucketRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : BucketRepository {
 
+    override suspend fun getBucketCategoryIds(): List<Long> {
+        return bucketDao.getBucketWithCategories().flatMap {
+            it.categories.map { category -> category.id }
+        }
+    }
+
     override suspend fun dumpBucket() {
         val items = bucketDao.getBucketWithCategories().map {
             it.toBucketDumpItem()
