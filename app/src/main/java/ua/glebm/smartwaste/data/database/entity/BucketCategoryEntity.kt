@@ -14,5 +14,6 @@ data class BucketCategoryEntity(
     @ColumnInfo("categoryId")
     val id: Long,
     val name: String,
-    val slug: String
+    val slug: String,
+    val icon: String,
 )

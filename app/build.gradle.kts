@@ -70,6 +70,7 @@ dependencies {
     implementation(libs.play.services.maps)
     implementation(libs.maps.compose.utils)
     implementation(libs.maps.compose.widgets)
+    implementation(libs.play.services.location)
 
     implementation(libs.lifecycle.runtime.compose)
 

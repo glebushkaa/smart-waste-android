@@ -14,5 +14,6 @@ fun RecyclePointDto.toRecyclePoint(): RecyclePoint {
         latitude = latitude ?: 0.0,
         longitude = longitude ?: 0.0,
         address = address ?: "",
+        categories = categories.map { it.toCategory() },
     )
 }

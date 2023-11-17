@@ -226,7 +226,7 @@ private fun BucketScreenContent(
                 )
                 .height(60.dp)
                 .fillMaxWidth(),
-            text = "Find the nearest recycle point",
+            text = "Show recycle points",
             textStyle = SWTheme.typography.bodyLarge,
             enabled = state.items.isNotEmpty(),
         ) {

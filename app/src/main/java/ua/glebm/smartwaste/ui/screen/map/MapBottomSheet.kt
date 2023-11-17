@@ -26,6 +26,7 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -35,9 +36,9 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat.startActivity
+import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
 import ua.glebm.smartwaste.core.android.extensions.checkPermission
 import ua.glebm.smartwaste.core.android.extensions.toast
@@ -50,20 +51,6 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 11/16/2023
  */
-
-@Preview
-@Composable
-private fun MapBottomSheetPreview() {
-    SWTheme(
-        darkTheme = true,
-    ) {
-        MapBottomSheetContent(
-            title = "Title",
-            address = "Address",
-            permissionGranted = true,
-        )
-    }
-}
 
 @Composable
 fun MapBottomSheet(
@@ -82,6 +69,7 @@ fun MapBottomSheet(
     var dialogVisible by rememberSaveable {
         mutableStateOf(false)
     }
+    var isNear by rememberSaveable { mutableStateOf(false) }
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = {
@@ -89,6 +77,9 @@ fun MapBottomSheet(
             granted = it
         },
     )
+    val fusedLocationClient = remember {
+        LocationServices.getFusedLocationProviderClient(context)
+    }
 
     if (dialogVisible) {
         LocationPermissionDialog {
@@ -97,22 +88,41 @@ fun MapBottomSheet(
         }
     }
 
+    LocationUpdater(
+        onLocationReceived = {
+            isNear = isUserWithinRadius(
+                userLocation = it,
+                pointLatitude = recyclerClusterItem.recyclePoint.latitude,
+                pointLongitude = recyclerClusterItem.recyclePoint.longitude,
+            )
+        },
+        fusedLocationClient = fusedLocationClient,
+    )
+
     ModalBottomSheet(
         modifier = modifier,
-        onDismissRequest = dismissRequest,
+        onDismissRequest = {
+            isNear = false
+            dismissRequest()
+        },
         containerColor = SWTheme.palette.surface,
         sheetState = modalBottomSheetState,
     ) {
         MapBottomSheetContent(
             title = recyclerClusterItem.recyclePoint.name,
             address = recyclerClusterItem.recyclePoint.address,
+            categories = recyclerClusterItem.recyclePoint.categories.joinToString(separator = " ") {
+                it.icon
+            },
             permissionGranted = granted,
+            near = isNear,
             giveLocationPermissionClicked = {
                 launcher.launch(ACCESS_FINE_LOCATION)
             },
             cleanBucketClicked = {
                 scope.launch {
                     cleanBucketClicked()
+                    isNear = false
                     modalBottomSheetState.hide()
                     dismissRequest()
                 }
@@ -133,10 +143,12 @@ private fun MapBottomSheetContent(
     modifier: Modifier = Modifier,
     title: String,
     address: String,
+    categories: String,
     cleanBucketClicked: () -> Unit = {},
     goClicked: () -> Unit = {},
     giveLocationPermissionClicked: () -> Unit = {},
     permissionGranted: Boolean,
+    near: Boolean = false,
 ) {
     val annotatedText = buildAnnotatedString {
         val clickableString = "Give a permission"
@@ -193,6 +205,12 @@ private fun MapBottomSheetContent(
             style = SWTheme.typography.titleLarge,
             color = SWTheme.palette.onSurface,
         )
+        Text(
+            modifier = Modifier.padding(top = SWTheme.offset.tiny),
+            text = categories,
+            style = SWTheme.typography.titleLarge,
+            color = SWTheme.palette.onSurface,
+        )
 
         if (!permissionGranted) {
             ClickableText(
@@ -240,8 +258,8 @@ private fun MapBottomSheetContent(
                 )
                 .height(50.dp)
                 .fillMaxWidth(),
-            enabled = permissionGranted,
-            text = "Clean bucket",
+            enabled = permissionGranted && near,
+            text = "Clear bucket",
             textStyle = SWTheme.typography.titleMedium,
         ) {
             cleanBucketClicked()

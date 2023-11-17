@@ -10,4 +10,5 @@ data class RecyclePoint(
     val latitude: Double,
     val longitude: Double,
     val address: String,
+    val categories: List<BucketItem.Category> = emptyList(),
 )

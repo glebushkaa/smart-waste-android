@@ -23,6 +23,7 @@ class ClearBucketUseCase @Inject constructor(
 
     override suspend fun invoke() = runCatching {
         withContext(Dispatchers.IO) {
+            bucketRepository.dumpBucket()
             bucketRepository.clearBucket()
         }
     }

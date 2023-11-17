@@ -12,6 +12,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import ua.glebm.smartwaste.data.database.BucketDao
 import ua.glebm.smartwaste.data.database.entity.BucketCategoryCrossRef
 import ua.glebm.smartwaste.data.database.entity.BucketWithCategories
+import ua.glebm.smartwaste.data.mapper.toBucketDumpItem
 import ua.glebm.smartwaste.data.mapper.toBucketEntity
 import ua.glebm.smartwaste.data.mapper.toBucketItem
 import ua.glebm.smartwaste.data.mapper.toCategoryEntity
@@ -34,6 +35,17 @@ class BucketRepositoryImpl @Inject constructor(
     private val authDataStore: AuthDataStore,
     @ApplicationContext private val context: Context,
 ) : BucketRepository {
+
+    override suspend fun dumpBucket() {
+        val items = bucketDao.getBucketWithCategories().map {
+            it.toBucketDumpItem()
+        }
+        val token = getAccessToken()
+        bucketApi.dumpBucketItems(
+            items = items,
+            token = token,
+        )
+    }
 
     override suspend fun clearBucket() = with(bucketDao) {
         deleteAllItems()

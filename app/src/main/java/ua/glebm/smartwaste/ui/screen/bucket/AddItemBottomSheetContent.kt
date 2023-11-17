@@ -74,7 +74,13 @@ fun AddItemBottomSheet(
                     dismissRequest()
                 }
             },
-            addClicked = addClicked,
+            addClicked = {
+                scope.launch {
+                    addClicked()
+                    modalBottomSheetState.hide()
+                    dismissRequest()
+                }
+            },
             increaseCountClicked = increaseCountClicked,
             decreaseCountClicked = decreaseCountClicked,
             itemSelected = itemSelected,

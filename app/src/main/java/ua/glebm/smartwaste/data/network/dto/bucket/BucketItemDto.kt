@@ -20,5 +20,6 @@ data class BucketItemDto(
         @SerializedName("id") val id: Long? = null,
         @SerializedName("name") val name: String? = null,
         @SerializedName("slug") val slug: String? = null,
+        @SerializedName("emoji") val icon: String? = null,
     )
 }

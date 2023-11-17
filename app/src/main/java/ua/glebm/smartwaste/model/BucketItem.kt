@@ -15,5 +15,6 @@ data class BucketItem(
         val id: Long,
         val name: String,
         val slug: String,
+        val icon: String,
     )
 }

@@ -3,6 +3,7 @@ package ua.glebm.smartwaste.data.mapper
 import ua.glebm.smartwaste.data.database.entity.BucketCategoryEntity
 import ua.glebm.smartwaste.data.database.entity.BucketItemEntity
 import ua.glebm.smartwaste.data.database.entity.BucketWithCategories
+import ua.glebm.smartwaste.data.network.dto.bucket.BucketDumpItemDto
 import ua.glebm.smartwaste.data.network.dto.bucket.BucketItemDto
 import ua.glebm.smartwaste.model.BucketItem
 
@@ -40,6 +41,7 @@ fun BucketItemDto.CategoryDto.toCategory(): BucketItem.Category {
         name = name ?: "",
         slug = slug ?: "",
         id = id ?: 0,
+        icon = icon ?: "",
     )
 }
 
@@ -48,6 +50,7 @@ fun BucketCategoryEntity.toCategory(): BucketItem.Category {
         name = name,
         slug = slug,
         id = id,
+        icon = icon,
     )
 }
 
@@ -56,5 +59,13 @@ fun BucketItem.Category.toCategoryEntity(): BucketCategoryEntity {
         name = name,
         slug = slug,
         id = id,
+        icon = icon,
+    )
+}
+
+fun BucketWithCategories.toBucketDumpItem(): BucketDumpItemDto {
+    return BucketDumpItemDto(
+        count = bucket.count,
+        id = bucket.id,
     )
 }
