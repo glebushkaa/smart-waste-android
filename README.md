@@ -7,9 +7,9 @@
 ## Screenshots
 
 <div style="display: flex; justify-content: space-between;">
-    <img src="src/1" width="250"/>
-    <img src="src/2" width="250"/>
-    <img src="src/3" width="250"/>
+    <img src="src/1.jpg" width="250"/>
+    <img src="src/2.jpg" width="250"/>
+    <img src="src/3.png" width="250"/>
 </div>
 
 ## Table of Contents
