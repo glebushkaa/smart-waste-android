@@ -12,8 +12,7 @@ data class ProfileState(
     val level: Int = 0,
     val doneBuckets: Int = 0,
     val days: Int = 0,
-    val dailyQuests: List<Quest> = emptyList(),
-    val generalQuests: List<Quest> = emptyList(),
+    val quests: List<Quest> = emptyList(),
     val completedLevelProgress: Int = 0,
     val requiredLevelProgress: Int = 0,
 )

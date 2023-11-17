@@ -10,6 +10,7 @@ import ua.glebm.smartwaste.data.network.dto.auth.DeleteAccountResponse
 import ua.glebm.smartwaste.data.network.dto.auth.SignInDto
 import ua.glebm.smartwaste.data.network.dto.auth.SignOutDto
 import ua.glebm.smartwaste.data.network.dto.auth.UserDto
+import ua.glebm.smartwaste.data.network.dto.user.QuestsListDto
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/27/2023
@@ -36,4 +37,9 @@ interface AuthApi {
     suspend fun deleteAccount(
         @Header("Authorization") token: String,
     ): DeleteAccountResponse
+
+    @GET("self/quests")
+    suspend fun getQuests(
+        @Header("Authorization") token: String,
+    ): QuestsListDto
 }

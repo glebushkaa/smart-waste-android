@@ -25,7 +25,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.ConstraintSet
@@ -39,72 +38,18 @@ import ua.glebm.smartwaste.ui.theme.SWTheme
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 11/15/2023
  */
 
-@Preview
-@Composable
-fun ProfileScreenPreview() {
-    val dailyList = listOf(
-        Quest(
-            id = 1,
-            title = "Complete 5 buckets",
-            totalValue = 5,
-            completeValue = 3,
-        ),
-        Quest(
-            id = 2,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 0,
-        ),
-    )
-    val generalList = listOf(
-        Quest(
-            id = 1,
-            title = "Complete 5 buckets",
-            totalValue = 5,
-            completeValue = 3,
-        ),
-        Quest(
-            id = 2,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 0,
-        ),
-    )
-
-    val state = ProfileState(
-        username = "gle.bushkaa",
-        email = "gleb.mokryy@gmail.com",
-        doneBuckets = 10,
-        level = 17,
-        days = 5,
-        requiredLevelProgress = 500,
-        completedLevelProgress = 345,
-        dailyQuests = dailyList,
-        generalQuests = generalList,
-    )
-
-    SWTheme(darkTheme = true) {
-        ProfileScreen(
-            state = state,
-        )
-    }
-}
-
 @Composable
 fun ProfileScreen(
     state: ProfileState,
-    sendEvent: (ProfileEvent) -> Unit = {},
 ) {
     ProfileScreenContent(
         state = state,
-        sendEvent = sendEvent,
     )
 }
 
 @Composable
 private fun ProfileScreenContent(
     state: ProfileState,
-    sendEvent: (ProfileEvent) -> Unit = {},
 ) {
     val primaryColor = SWTheme.palette.primary
 
@@ -242,34 +187,8 @@ private fun ProfileScreenContent(
                 SWTheme.offset.regular,
             ),
         ) {
-            item {
-                Text(
-                    modifier = Modifier.padding(start = SWTheme.offset.small),
-                    text = "Daily",
-                    style = SWTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                    ),
-                    color = SWTheme.palette.onSurface,
-                )
-            }
             items(
-                items = state.dailyQuests,
-                key = { it.id },
-            ) { quest ->
-                QuestItem(quest = quest)
-            }
-            item {
-                Text(
-                    modifier = Modifier.padding(start = SWTheme.offset.small),
-                    text = "General",
-                    style = SWTheme.typography.titleMedium.copy(
-                        fontWeight = FontWeight.Medium,
-                    ),
-                    color = SWTheme.palette.onSurface,
-                )
-            }
-            items(
-                items = state.generalQuests,
+                items = state.quests,
                 key = { it.id },
             ) { quest ->
                 QuestItem(quest = quest)

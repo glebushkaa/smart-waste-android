@@ -5,7 +5,7 @@ package ua.glebm.smartwaste.model
  */
 
 data class Quest(
-    val id: Int,
+    val id: Long,
     val title: String,
     val totalValue: Int,
     val completeValue: Int,

@@ -2,6 +2,7 @@ package ua.glebm.smartwaste.data.repository
 
 import com.google.gson.Gson
 import retrofit2.HttpException
+import ua.glebm.smartwaste.data.mapper.toQuest
 import ua.glebm.smartwaste.data.mapper.toUser
 import ua.glebm.smartwaste.data.network.AuthApi
 import ua.glebm.smartwaste.data.network.dto.auth.AuthResponse
@@ -14,6 +15,7 @@ import ua.glebm.smartwaste.domain.repository.AuthRepository
 import ua.glebm.smartwaste.domain.usecase.auth.LoginField
 import ua.glebm.smartwaste.domain.usecase.auth.SignInUseCase
 import ua.glebm.smartwaste.domain.usecase.auth.SignUpUseCase
+import ua.glebm.smartwaste.model.Quest
 import ua.glebm.smartwaste.model.User
 import javax.inject.Inject
 
@@ -25,6 +27,15 @@ class AuthRepositoryImpl @Inject constructor(
     private val authDataStore: AuthDataStore,
     private val authApi: AuthApi,
 ) : AuthRepository {
+
+    override suspend fun getQuests(): List<Quest> {
+        val accessToken = getAccessToken()
+        return authApi.getQuests(
+            token = accessToken,
+        ).quests.map {
+            it.toQuest()
+        }
+    }
 
     override suspend fun login(email: String, password: String): String {
         val response: AuthResponse

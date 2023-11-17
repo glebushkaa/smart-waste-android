@@ -1,9 +1,12 @@
 package ua.glebm.smartwaste.ui.screen.profile
 
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import ua.glebm.smartwaste.core.android.BaseViewModel
 import ua.glebm.smartwaste.core.android.stateReducerFlow
-import ua.glebm.smartwaste.model.Quest
+import ua.glebm.smartwaste.domain.repository.AuthRepository
 import javax.inject.Inject
 
 /**
@@ -11,67 +14,43 @@ import javax.inject.Inject
  */
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor() : BaseViewModel() {
-
-    val dailyList = listOf(
-        Quest(
-            id = 32,
-            title = "Complete 5 buckets",
-            totalValue = 5,
-            completeValue = 3,
-        ),
-        Quest(
-            id = 43,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 10,
-        ),
-    )
-    val generalList = listOf(
-        Quest(
-            id = 1,
-            title = "Complete 5 buckets",
-            totalValue = 5,
-            completeValue = 5,
-        ),
-        Quest(
-            id = 2,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 0,
-        ),
-        Quest(
-            id = 3,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 10,
-        ),
-        Quest(
-            id = 5,
-            title = "Complete 10 buckets",
-            totalValue = 10,
-            completeValue = 0,
-        ),
-    )
-
-    val _state = ProfileState(
-        username = "gle.bushkaa",
-        email = "gleb.mokryy@gmail.com",
-        doneBuckets = 10,
-        level = 17,
-        days = 5,
-        requiredLevelProgress = 500,
-        completedLevelProgress = 345,
-        dailyQuests = dailyList,
-        generalQuests = generalList,
-    )
+class ProfileViewModel @Inject constructor(
+    private val authRepository: AuthRepository,
+) : BaseViewModel() {
 
     val state = stateReducerFlow(
-        initialState = _state,
+        initialState = ProfileState(),
         reduceState = ::handleEvent,
     )
 
+    init {
+        initProfile()
+    }
+
+    private fun initProfile() = viewModelScope.launch(Dispatchers.IO) {
+        val user = async { authRepository.getUser() }
+        val quests = async { authRepository.getQuests() }
+        val event = ProfileEvent.UserInfoLoaded(
+            user = user.await(),
+            quests = quests.await(),
+        )
+        state.handleEvent(event)
+    }
+
     private fun handleEvent(currentState: ProfileState, event: ProfileEvent): ProfileState {
-        return currentState
+        when (event) {
+            is ProfileEvent.UserInfoLoaded -> {
+                return currentState.copy(
+                    username = event.user.username,
+                    email = event.user.email,
+                    quests = event.quests,
+                    requiredLevelProgress = 500,
+                    completedLevelProgress = 300,
+                    level = 17,
+                    doneBuckets = 3,
+                    days = 5,
+                )
+            }
+        }
     }
 }

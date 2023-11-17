@@ -168,6 +168,6 @@ class LoginViewModel @Inject constructor(
     private companion object {
         const val MIN_EMAIL_LENGTH = 10
         const val MIN_USERNAME_LENGTH = 4
-        const val MIN_PASSWORD_LENGTH = 8
+        const val MIN_PASSWORD_LENGTH = 3
     }
 }

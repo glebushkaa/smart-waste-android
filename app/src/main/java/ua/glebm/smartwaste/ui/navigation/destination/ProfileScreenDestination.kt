@@ -20,7 +20,6 @@ fun NavGraphBuilder.profileScreenDestination() {
 
         ProfileScreen(
             state = state,
-            sendEvent = viewModel.state::handleEvent,
         )
     }
 }

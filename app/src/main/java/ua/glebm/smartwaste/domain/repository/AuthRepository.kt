@@ -1,5 +1,6 @@
 package ua.glebm.smartwaste.domain.repository
 
+import ua.glebm.smartwaste.model.Quest
 import ua.glebm.smartwaste.model.User
 
 /**
@@ -37,4 +38,6 @@ interface AuthRepository {
      * @throws AuthException
      */
     suspend fun deleteAccount()
+
+    suspend fun getQuests(): List<Quest>
 }
