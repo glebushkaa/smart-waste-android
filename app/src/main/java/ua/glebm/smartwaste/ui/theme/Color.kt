@@ -15,3 +15,5 @@ val BackgroundWhite = Color(0xFFEBEBEB)
 val SurfaceBlack = Color(0xFF181818)
 val NewSurfaceBlack = Color(0xFF454444)
 val NewOnSurfaceBlack = Color(0xFFE7E7E7)
+
+val LinkBlue = Color(0xFF6C69F6)

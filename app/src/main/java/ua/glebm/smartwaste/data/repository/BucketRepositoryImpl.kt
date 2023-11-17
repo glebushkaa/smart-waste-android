@@ -35,7 +35,10 @@ class BucketRepositoryImpl @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : BucketRepository {
 
-    override suspend fun clearBucket() {
+    override suspend fun clearBucket() = with(bucketDao) {
+        deleteAllItems()
+        deleteAllCategories()
+        deleteAllCrossRef()
     }
 
     override suspend fun getCurrentBucketCategorySlugs(): List<String> {

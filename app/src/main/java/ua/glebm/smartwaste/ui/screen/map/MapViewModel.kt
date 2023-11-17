@@ -5,6 +5,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import ua.glebm.smartwaste.core.android.BaseViewModel
 import ua.glebm.smartwaste.core.android.stateReducerFlow
+import ua.glebm.smartwaste.domain.usecase.bucket.ClearBucketUseCase
 import ua.glebm.smartwaste.domain.usecase.recycle.GetRecyclePointUseCase
 import ua.glebm.smartwaste.domain.usecase.recycle.GetRecyclePointsByCategoriesUseCase
 import ua.glebm.smartwaste.ui.navigation.route.MapScreenRoute
@@ -19,6 +20,7 @@ import javax.inject.Inject
 class MapViewModel @Inject constructor(
     private val getRecyclePointUseCase: GetRecyclePointUseCase,
     private val getRecyclePointsByCategoriesUseCase: GetRecyclePointsByCategoriesUseCase,
+    private val clearBucketUseCase: ClearBucketUseCase,
     savedStateHandle: SavedStateHandle,
 ) : BaseViewModel() {
 
@@ -44,14 +46,31 @@ class MapViewModel @Inject constructor(
         state.handleEvent(event)
     }
 
+    private fun clearBucket() = viewModelScope.launch {
+        clearBucketUseCase()
+    }
+
     private fun handleEvent(
         currentState: MapScreenState,
         event: MapScreenEvent,
     ): MapScreenState {
-        return when (event) {
+        when (event) {
             is MapScreenEvent.ClusterPointsLoaded -> {
-                currentState.copy(recyclePoints = event.recyclePoints)
+                return currentState.copy(recyclePoints = event.recyclePoints)
+            }
+
+            is MapScreenEvent.ChoosePoint -> {
+                return currentState.copy(chosenPoint = event.point)
+            }
+
+            MapScreenEvent.ClearPoint -> {
+                return currentState.copy(chosenPoint = null)
+            }
+
+            is MapScreenEvent.CleanBucket -> {
+                clearBucket()
             }
         }
+        return currentState
     }
 }

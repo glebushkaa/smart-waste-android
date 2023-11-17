@@ -33,5 +33,8 @@ private fun MapDestinationContent() {
     val viewModel = hiltViewModel<MapViewModel>()
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    MapScreen(state = state)
+    MapScreen(
+        state = state,
+        sendEvent = viewModel.state::handleEvent,
+    )
 }

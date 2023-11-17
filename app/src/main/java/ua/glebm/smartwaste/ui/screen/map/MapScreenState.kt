@@ -1,8 +1,7 @@
 package ua.glebm.smartwaste.ui.screen.map
 
 import androidx.compose.runtime.Stable
-import com.google.maps.android.clustering.ClusterItem
-import ua.glebm.smartwaste.model.RecyclePoint
+import ua.glebm.smartwaste.ui.screen.map.model.RecyclerClusterItem
 
 /**
  * Created by gle.bushkaa email(gleb.mokryy@gmail.com) on 10/27/2023
@@ -10,5 +9,6 @@ import ua.glebm.smartwaste.model.RecyclePoint
 
 @Stable
 data class MapScreenState(
-    val recyclePoints: List<ClusterItem> = emptyList(),
+    val recyclePoints: List<RecyclerClusterItem> = emptyList(),
+    val chosenPoint: RecyclerClusterItem? = null,
 )

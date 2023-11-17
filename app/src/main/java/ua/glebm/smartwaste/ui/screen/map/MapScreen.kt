@@ -1,3 +1,5 @@
+@file:OptIn(MapsComposeExperimentalApi::class)
+
 package ua.glebm.smartwaste.ui.screen.map
 
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -17,6 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.google.maps.android.compose.GoogleMap
 import com.google.maps.android.compose.MapProperties
+import com.google.maps.android.compose.MapsComposeExperimentalApi
 import com.google.maps.android.compose.clustering.Clustering
 import ua.glebm.smartwaste.R
 
@@ -25,7 +28,10 @@ import ua.glebm.smartwaste.R
  */
 
 @Composable
-fun MapScreen(state: MapScreenState) {
+fun MapScreen(
+    state: MapScreenState,
+    sendEvent: (MapScreenEvent) -> Unit,
+) {
     var granted by rememberSaveable { mutableStateOf(false) }
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
@@ -36,6 +42,18 @@ fun MapScreen(state: MapScreenState) {
             MapProperties(isMyLocationEnabled = granted),
         )
     }
+
+    if (state.chosenPoint != null) {
+        MapBottomSheet(
+            recyclerClusterItem = state.chosenPoint,
+            dismissRequest = { sendEvent(MapScreenEvent.ClearPoint) },
+            cleanBucketClicked = {
+                val event = MapScreenEvent.CleanBucket(state.chosenPoint)
+                sendEvent(event)
+            },
+        )
+    }
+
     GoogleMap(
         modifier = Modifier.fillMaxSize(),
         properties = properties,
@@ -48,6 +66,10 @@ fun MapScreen(state: MapScreenState) {
                     modifier = Modifier.size(30.dp),
                     contentDescription = null,
                 )
+            },
+            onClusterItemClick = {
+                sendEvent(MapScreenEvent.ChoosePoint(it))
+                true
             },
         )
     }

@@ -19,6 +19,7 @@ data class Palette(
     val onBackground: Color = Color.Black,
     val onSurface: Color = Color.Black,
     val onError: Color = Color.Red,
+    val link: Color = Color.Blue,
 )
 
 val darkPalette = Palette(
@@ -34,6 +35,7 @@ val darkPalette = Palette(
     onBackground = Color.White,
     onSurface = NewOnSurfaceBlack,
     onError = BackgroundWhite,
+    link = LinkBlue,
 )
 
 val lightPalette = Palette(
@@ -49,4 +51,5 @@ val lightPalette = Palette(
     onBackground = Color.Black,
     onSurface = NewSurfaceBlack,
     onError = BackgroundWhite,
+    link = LinkBlue,
 )

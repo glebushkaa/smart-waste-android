@@ -67,4 +67,13 @@ interface BucketDao {
     @Transaction
     @Query("SELECT * FROM bucket WHERE count > 0 ORDER BY name ASC")
     fun getBucketWithCategories(): List<BucketWithCategories>
+
+    @Query("DELETE FROM bucket")
+    suspend fun deleteAllItems()
+
+    @Query("DELETE FROM bucket_category")
+    suspend fun deleteAllCategories()
+
+    @Query("DELETE FROM bucketcategorycrossref")
+    suspend fun deleteAllCrossRef()
 }
